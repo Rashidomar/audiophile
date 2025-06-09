@@ -19,6 +19,12 @@ type CartProps = {
   className?: string;
 };
 
+type Product = {
+  id: number;
+  name: string;
+  price: number;
+};
+
 export default function Cart({
   isCartOpen,
   setIsCartOpen,
@@ -64,7 +70,7 @@ export default function Cart({
 
       const cartProducts = cartData.reduce((acc, cartProduct) => {
         const product = products.find(
-          (product) => product.id === cartProduct.id,
+          (product: Product) => product.id === cartProduct.id,
         );
         if (product) {
           acc.push(convertToCartProduct(product, cartProduct.quantity));
